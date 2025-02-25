@@ -19,6 +19,7 @@ classDiagram
     class Endereco {
         +String rua
         +String bairro
+        +Integer numero
         +String cidade
         +String estado
         +String cep

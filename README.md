@@ -36,8 +36,8 @@ classDiagram
         -String nomePet
     }
 
-    Cliente "1..*" -- "1..*" Pet : "possui"
-    Pet "1" -- "1..*" Servico : "recebe"
-    Cliente "1" -- "1..*" Servico : "contrata"
+    Cliente "1..n" -- "1" Pet : "possui"
+    Pet "1..n" -- "1..n" Servico : "recebe"
+    Cliente "1" -- "1..n" Servico : "contrata"
 
 ```

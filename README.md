@@ -3,7 +3,7 @@
 
 ##Diagrama de classes
 
-```
+```mermaid
 classDiagram
     class Cliente {
         -String nomeCompleto

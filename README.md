@@ -12,6 +12,7 @@ classDiagram
         -String rua
         -String bairro
         -String historico
+        -String cpf
     }
 
     class Pet {
@@ -20,6 +21,7 @@ classDiagram
         -String raca
         -float peso
         -String sexo
+        -Long donoId
     }
 
     class Servico {
@@ -29,9 +31,14 @@ classDiagram
         -String statusPagamento
         -String formaPagamento
         -String dataPagamento
+        -String cpfCliente
+        -String nomePet
     }
 
     Cliente --* Pet
     Pet --* Servico
+    Cliente --* Servico
+
+
 
 ```

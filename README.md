@@ -25,6 +25,7 @@ classDiagram
     }
 
     class Servico {
+        -Long idServico
         -String dataInicio
         -String dataFim
         -String tipoServico
@@ -35,10 +36,8 @@ classDiagram
         -String nomePet
     }
 
-    Cliente --* Pet
-    Pet --* Servico
-    Cliente --* Servico
-
-
+    Cliente "1..*" -- "1..*" Pet : "possui"
+    Pet "1" -- "1..*" Servico : "recebe"
+    Cliente "1" -- "1..*" Servico : "contrata"
 
 ```

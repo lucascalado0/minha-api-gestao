@@ -14,15 +14,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public ClienteServiceImpl(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
-
     @Override
     public Optional<Cliente> findByCpf(String cpf) {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
         if (clienteOptional.isPresent()) {
-            return Optional.of(clienteOptional.get());
+            return clienteOptional;
         } else {
             throw new NoSuchElementException("Cliente com CPF " + cpf + " não encontrado.");
         }
@@ -41,6 +37,7 @@ public class ClienteServiceImpl implements ClienteService {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
+
             clienteRepository.delete(cliente);
 
             return cliente;

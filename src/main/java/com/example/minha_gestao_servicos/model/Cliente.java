@@ -18,7 +18,7 @@ public class Cliente {
     @Column(name = "cliente_id", nullable = false)
     private Long id;
 
-    @Column(length = 12, nullable = false, unique = true)
+    @Column(name = "cpf_cliente", length = 15, nullable = false, unique = true)
     private String cpf;
 
     @Column(name = "primeiro_nome", length = 100, nullable = false)
@@ -36,7 +36,7 @@ public class Cliente {
     @Embedded
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "dono", cascade = CascadeType.ALL) //cascadate.type todas as operações feitas no Cliente também serão propagadas para os Pets
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL) //cascadate.type todas as operações feitas no Cliente também serão propagadas para os Pets
     @JsonManagedReference
     private List<Pet> pets;
 }

@@ -1,5 +1,6 @@
 package com.example.minha_gestao_servicos.model;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -31,9 +32,9 @@ public class Pet {
     private String sexo;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "cliente_id", nullable = true)
     @JsonBackReference
-    private Cliente dono;
+    private Cliente tutor;
 
     @ManyToMany(mappedBy = "pets")
     private List<Servico> servicos;

@@ -1,5 +1,6 @@
 package com.example.minha_gestao_servicos.model;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Data;

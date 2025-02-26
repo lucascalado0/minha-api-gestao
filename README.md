@@ -42,7 +42,7 @@ classDiagram
         +List<Pet> pets
         +LocalDate dataInicio
         +LocalDate dataFim
-        +String statusPagamento
+        +Boolean statusPagamento
         +String formaPagamento
         +Double valor
     }

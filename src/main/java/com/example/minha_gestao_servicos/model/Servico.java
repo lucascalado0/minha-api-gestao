@@ -24,9 +24,9 @@ public class Servico {
     private LocalDate dataFim;
 
     @Column(name = "status_pagamento", nullable = false)
-    private String statusPagamento;
+    private Boolean statusPagamento;
 
-    @Column(name = "forma_pagamento", nullable = false)
+    @Column(name = "forma_pagamento", length = 10, nullable = false)
     private String formaPagamento;
 
     @Column(nullable = false)

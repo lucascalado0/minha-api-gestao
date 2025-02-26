@@ -32,7 +32,7 @@ classDiagram
         +String raca
         +Double peso
         +String sexo
-        +String carteiraVacinacao
+        +Cliente cliente
         +String observacoes
     }
 

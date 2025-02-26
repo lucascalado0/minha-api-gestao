@@ -1,5 +1,7 @@
 package com.example.minha_gestao_servicos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -41,5 +43,6 @@ public class Servico {
             joinColumns = @JoinColumn(name = "servico_id"),
             inverseJoinColumns = @JoinColumn(name = "pet_id")
     )
+
     private List<Pet> pets;
 }

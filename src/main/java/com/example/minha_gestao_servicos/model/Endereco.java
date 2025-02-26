@@ -20,7 +20,7 @@ public class Endereco {
     @Column(length = 50, nullable = false)
     private String estado;
 
-    @Column(nullable = false)
+    @Column(name = "numero_casa", nullable = false)
     private int numero;
 
     @Column(length = 20, nullable = false)

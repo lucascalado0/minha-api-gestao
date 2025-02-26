@@ -1,13 +1,15 @@
 package com.example.minha_gestao_servicos.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
 
-@Entity(name = "clientes")
+
 @Data
+@Entity(name = "clientes")
 @Table(name = "tb_clientes")
 public class Cliente {
 
@@ -28,15 +30,13 @@ public class Cliente {
     @Column(length = 50, nullable = false, unique = true)
     private String email;
 
-    @Column(length = 20, nullable = false, unique = true)
+    @Column(name = "numero_contato", length = 20, nullable = false, unique = true)
     private String numeroContato;
 
     @Embedded
     private Endereco endereco;
 
     @OneToMany(mappedBy = "dono", cascade = CascadeType.ALL) //cascadate.type todas as operações feitas no Cliente também serão propagadas para os Pets
-    @JsonBackReference
+    @JsonManagedReference
     private List<Pet> pets;
-
-
 }

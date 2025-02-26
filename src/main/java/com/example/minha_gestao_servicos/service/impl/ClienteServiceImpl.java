@@ -20,10 +20,8 @@ public class ClienteServiceImpl implements ClienteService {
         if ((novoCliente.getId() != null) && (clienteRepository.existsById(novoCliente.getId()))) {
             throw new IllegalArgumentException("Ja existe um cliente com esse ID");
         }
-
         return clienteRepository.save(novoCliente);
     }
-
 
     @Override
     public Optional<Cliente> findByCpf(String cpf) {
@@ -34,7 +32,6 @@ public class ClienteServiceImpl implements ClienteService {
             throw new NoSuchElementException("Cliente com CPF " + cpf + " não encontrado.");
         }
     }
-
 
     @Override
     public Cliente delete(String cpf) {

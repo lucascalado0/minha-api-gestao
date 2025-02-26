@@ -17,6 +17,15 @@ public class ClienteController {
     @Autowired
     private ClienteServiceImpl clienteService;
 
+
+    @PostMapping(value = "/save")
+    public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
+        cliente = clienteService.create(cliente);
+
+        return ResponseEntity.ok().body(cliente);
+    }
+
+
     @GetMapping(value = "/{cpf}")
     public ResponseEntity<Optional<Cliente>> findByCpf(@PathVariable String cpf) {
         Optional<Cliente> cliente = clienteService.findByCpf(cpf);
@@ -25,13 +34,6 @@ public class ClienteController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Optional.empty());
         }
-    }
-
-    @PostMapping(value = "/save")
-    public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
-        cliente = clienteService.create(cliente);
-
-        return ResponseEntity.ok().body(cliente);
     }
 
     @PutMapping(value = "/update")

@@ -10,4 +10,5 @@ public interface PetService {
     Optional<Pet> findById(Long id);
     List<Pet> findAll();
     Pet update(Long id, Pet pet);
+    Pet create(Pet pet);
 }

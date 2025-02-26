@@ -1,5 +1,6 @@
 package com.example.minha_gestao_servicos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -34,6 +35,7 @@ public class Cliente {
     private Endereco endereco;
 
     @OneToMany(mappedBy = "dono", cascade = CascadeType.ALL) //cascadate.type todas as operações feitas no Cliente também serão propagadas para os Pets
+    @JsonBackReference
     private List<Pet> pets;
 
 

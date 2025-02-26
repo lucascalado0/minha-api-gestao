@@ -1,5 +1,7 @@
 package com.example.minha_gestao_servicos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -31,6 +33,7 @@ public class Pet {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonBackReference
     private Cliente dono;
 
     @ManyToMany(mappedBy = "pets")

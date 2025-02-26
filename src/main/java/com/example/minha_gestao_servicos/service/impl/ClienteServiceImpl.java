@@ -16,6 +16,16 @@ public class ClienteServiceImpl implements ClienteService {
     private ClienteRepository clienteRepository;
 
     @Override
+    public Cliente create(Cliente novoCliente) {
+        if ((novoCliente.getId() != null) && (clienteRepository.existsById(novoCliente.getId()))) {
+            throw new IllegalArgumentException("Ja existe um cliente com esse ID");
+        }
+
+        return clienteRepository.save(novoCliente);
+    }
+
+
+    @Override
     public Optional<Cliente> findByCpf(String cpf) {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
         if (clienteOptional.isPresent()) {
@@ -25,13 +35,6 @@ public class ClienteServiceImpl implements ClienteService {
         }
     }
 
-    @Override
-    public Cliente create(Cliente novoCliente) {
-        if ((novoCliente.getId() != null) && (clienteRepository.existsById(novoCliente.getId()))) {
-            throw new IllegalArgumentException("Ja existe um cliente com esse ID");
-        }
-        return new Cliente();
-    }
 
     @Override
     public Cliente delete(String cpf) {

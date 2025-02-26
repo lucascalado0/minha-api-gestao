@@ -18,6 +18,16 @@ public class PetServiceImpl implements PetService {
     private PetRepository petRepository;
 
     @Override
+    public Pet create(Pet pet) {
+        if (pet.getPetId() != null && petRepository.existsById(pet.getPetId())){
+            throw new IllegalArgumentException("Ja existe um cliente com esse ID");
+        }
+
+        return petRepository.save(pet);
+    }
+
+
+    @Override
     public Optional<Pet> findById(Long id) {
         Optional<Pet> petOptional = petRepository.findById(id);
         if (petOptional.isPresent()){
@@ -31,6 +41,7 @@ public class PetServiceImpl implements PetService {
     public List<Pet> findAll() {
         return petRepository.findAll();
     }
+
 
     @Override
     public Pet update(Long id, Pet novosDados) {
@@ -49,6 +60,4 @@ public class PetServiceImpl implements PetService {
             throw new NoSuchElementException("pet com id " + id + " não encontrado.");
         }
     }
-
-
 }

@@ -19,10 +19,10 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente findByCpf(String cpf) {
+    public Optional<Cliente> findByCpf(String cpf) {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
         if (clienteOptional.isPresent()) {
-            return clienteOptional.get();
+            return Optional.of(clienteOptional.get());
         } else {
             throw new NoSuchElementException("Cliente com CPF " + cpf + " não encontrado.");
         }
@@ -37,19 +37,21 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente deleteByCpf(String cpf) {
+    public Cliente delete(String cpf) {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();
             clienteRepository.delete(cliente);
+
             return cliente;
+
         } else {
             throw new NoSuchElementException("Cliente com CPF " + cpf + " não encontrado.");
         }
     }
 
     @Override
-    public Cliente updateByCpf(String cpf, Cliente novosDados) {
+    public Cliente update(String cpf, Cliente novosDados) {
         Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
         if (clienteOptional.isPresent()) {
             Cliente cliente = clienteOptional.get();

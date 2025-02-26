@@ -2,13 +2,15 @@ package com.example.minha_gestao_servicos.service;
 
 import com.example.minha_gestao_servicos.model.Cliente;
 
+import java.util.Optional;
+
 public interface ClienteService {
 
-    Cliente findByCpf(String cpf);
+    Optional<Cliente> findByCpf(String cpf);
 
     Cliente create(Cliente novoCliente);
 
-    Cliente deleteByCpf(String cpf);
+    Cliente delete(String cpf);
 
-    Cliente updateByCpf(String cpf, Cliente cliente);
+    Cliente update(String cpf, Cliente cliente);
 }

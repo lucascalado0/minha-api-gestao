@@ -1,6 +1,8 @@
 package com.example.minha_gestao_servicos.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @Entity(name = "servicos")
 @Data
 @Table(name = "tb_servicos")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idServico")
 public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +45,6 @@ public class Servico {
             joinColumns = @JoinColumn(name = "servico_id"),
             inverseJoinColumns = @JoinColumn(name = "pet_id")
     )
-
     private List<Pet> pets;
+
 }

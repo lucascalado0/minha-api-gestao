@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ServicoService {
+
+    Servico create(Servico servico);
     Optional<Servico> findById(Long id);
     List<Servico> findAll();
     Servico update(Long id, Servico servico);

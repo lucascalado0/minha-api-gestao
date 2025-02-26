@@ -2,9 +2,7 @@ package com.example.minha_gestao_servicos.controller;
 
 
 
-import com.example.minha_gestao_servicos.model.Cliente;
 import com.example.minha_gestao_servicos.model.Pet;
-import com.example.minha_gestao_servicos.service.impl.ClienteServiceImpl;
 import com.example.minha_gestao_servicos.service.impl.PetServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +19,6 @@ public class PetController {
 
     @Autowired
     private PetServiceImpl petService;
-
-    @Autowired
-    private ClienteServiceImpl clienteService;
 
 
     @PostMapping(value = "/save")
@@ -68,7 +63,4 @@ public class PetController {
 
         return ResponseEntity.ok(pets);
     }
-
-
-
 }

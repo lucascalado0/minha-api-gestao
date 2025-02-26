@@ -29,9 +29,9 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Optional<Pet> findById(Long id) {
-        Optional<Pet> petOptional = petRepository.findById(id);
-        if (petOptional.isPresent()){
-            return petOptional;
+        Optional<Pet> pet = petRepository.findById(id);
+        if (pet.isPresent()){
+            return pet;
         } else {
             throw new NoSuchElementException("Pet com Id " + id + " não encontrado");
         }

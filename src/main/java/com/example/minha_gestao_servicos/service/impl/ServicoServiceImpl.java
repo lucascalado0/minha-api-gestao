@@ -5,6 +5,7 @@ import com.example.minha_gestao_servicos.model.Servico;
 import com.example.minha_gestao_servicos.repository.ServicoRepository;
 import com.example.minha_gestao_servicos.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,15 @@ public class ServicoServiceImpl implements ServicoService {
     @Autowired
     private ServicoRepository servicoRepository;
 
+
+    @Override
+    public Servico create(Servico servico) {
+        if (servico.getIdServico() != null && servicoRepository.existsById(servico.getIdServico())){
+            throw new IllegalArgumentException("Ja existe um servico com esse id");
+        }
+
+        return servicoRepository.save(servico);
+    }
 
     @Override
     public Optional<Servico> findById(Long id) {

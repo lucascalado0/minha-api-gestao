@@ -1,7 +1,8 @@
 package com.example.minha_gestao_servicos.model;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Data
 @Entity(name = "clientes")
 @Table(name = "tb_clientes")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Cliente {
 
     @Id
@@ -37,6 +39,5 @@ public class Cliente {
     private Endereco endereco;
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL) //cascadate.type todas as operações feitas no Cliente também serão propagadas para os Pets
-    @JsonManagedReference
     private List<Pet> pets;
 }

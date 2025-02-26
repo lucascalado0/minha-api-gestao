@@ -5,11 +5,13 @@ import com.example.minha_gestao_servicos.model.Pet;
 import com.example.minha_gestao_servicos.repository.PetRepository;
 import com.example.minha_gestao_servicos.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Service
 public class PetServiceImpl implements PetService {
 
     @Autowired

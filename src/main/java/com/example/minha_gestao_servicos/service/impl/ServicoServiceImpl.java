@@ -5,11 +5,13 @@ import com.example.minha_gestao_servicos.model.Servico;
 import com.example.minha_gestao_servicos.repository.ServicoRepository;
 import com.example.minha_gestao_servicos.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Service
 public class ServicoServiceImpl implements ServicoService {
 
     @Autowired

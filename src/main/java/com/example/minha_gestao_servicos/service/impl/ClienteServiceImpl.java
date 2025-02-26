@@ -4,11 +4,12 @@ import com.example.minha_gestao_servicos.model.Cliente;
 import com.example.minha_gestao_servicos.repository.ClienteRepository;
 import com.example.minha_gestao_servicos.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-
+@Service
 public class ClienteServiceImpl implements ClienteService {
 
     @Autowired

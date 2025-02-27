@@ -1,7 +1,6 @@
 package com.example.minha_gestao_servicos.controller;
 
 import com.example.minha_gestao_servicos.model.Cliente;
-import com.example.minha_gestao_servicos.model.Pet;
 import com.example.minha_gestao_servicos.service.impl.ClienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +19,7 @@ public class ClienteController {
     private ClienteServiceImpl clienteService;
 
 
+
     @PostMapping(value = "/save")
     public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
 
@@ -27,6 +27,7 @@ public class ClienteController {
 
         return ResponseEntity.ok().body(cliente);
     }
+
 
     @GetMapping(value = "/{cpf}")
     public ResponseEntity<Optional<Cliente>> findByCpf(@PathVariable String cpf) {
@@ -38,12 +39,15 @@ public class ClienteController {
         }
     }
 
+
     @GetMapping(value = "/todos")
     public ResponseEntity <List<Cliente>> findAll(){
         List<Cliente> clientes = clienteService.findAll();
 
         return ResponseEntity.ok(clientes);
     }
+
+
 
     @PutMapping(value = "/update")
     public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
@@ -55,6 +59,7 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
 
     @DeleteMapping(value = "/delete/{cpf}")
     public ResponseEntity<Void> delete(@PathVariable String cpf) {

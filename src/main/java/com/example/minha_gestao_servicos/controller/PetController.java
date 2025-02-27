@@ -25,11 +25,12 @@ public class PetController {
     @Autowired
     private ClienteServiceImpl clienteService;
 
+
     @PostMapping(value = "/save")
     public ResponseEntity<Pet> create(@RequestBody Pet pet) {
-        Optional<Cliente> clienteOptional = clienteService.findById(pet.getTutor().getId());
-        if (clienteOptional.isPresent()) {
-            Cliente cliente = clienteOptional.get();
+        Optional<Cliente> clienteBuscarId = clienteService.findById(pet.getTutor().getId());
+        if (clienteBuscarId.isPresent()) {
+            Cliente cliente = clienteBuscarId.get();
             pet.setTutor(cliente);
             cliente.getPets().add(pet);
             Pet novoPet = petService.create(pet);
@@ -38,6 +39,8 @@ public class PetController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<Pet>> findById(@PathVariable Long id){
@@ -49,6 +52,7 @@ public class PetController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Optional.empty());
         }
     }
+
 
     @GetMapping(value = "/todos")
     public ResponseEntity <List<Pet>> findAll(){

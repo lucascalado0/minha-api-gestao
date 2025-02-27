@@ -26,22 +26,11 @@ public class ServicoController {
         return ResponseEntity.ok().body(servico);
     }
 
-//    @GetMapping(value = "/{id}")
-//    public ResponseEntity <Servico> findById (@PathVariable Long id){
-//        Optional<Servico> servico = servicoService.findById(id);
-//        if (servico.isPresent()){
-//            return ResponseEntity.ok(servico.get());
-//        } else {
-//            throw new NoSuchElementException("Nao existe servico com esse id!");
-//        }
-//    }
-
     @GetMapping(value = "/{id}")
     public ResponseEntity<Servico> findById(@PathVariable Long id) {
         Optional<Servico> servicoBusca = servicoService.findById(id);
         if (servicoBusca.isPresent()) {
             Servico servico = servicoBusca.get();
-            // Garante que os pets associados ao serviço sejam carregados
             return ResponseEntity.ok(servico);
         } else {
             throw new NoSuchElementException("Nao existe servico com esse id!");

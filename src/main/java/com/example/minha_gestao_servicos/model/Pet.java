@@ -34,7 +34,7 @@ public class Pet {
     private String sexo;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = true)
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente tutor;
 
 

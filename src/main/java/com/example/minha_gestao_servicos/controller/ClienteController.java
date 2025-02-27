@@ -1,12 +1,14 @@
 package com.example.minha_gestao_servicos.controller;
 
 import com.example.minha_gestao_servicos.model.Cliente;
+import com.example.minha_gestao_servicos.model.Pet;
 import com.example.minha_gestao_servicos.service.impl.ClienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -36,11 +38,22 @@ public class ClienteController {
         }
     }
 
+    @GetMapping(value = "/todos")
+    public ResponseEntity <List<Cliente>> findAll(){
+        List<Cliente> clientes = clienteService.findAll();
+
+        return ResponseEntity.ok(clientes);
+    }
+
     @PutMapping(value = "/update")
     public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
-
-        Cliente atualizado = clienteService.update(cliente.getCpf(), cliente);
-        return ResponseEntity.ok(atualizado);
+        Optional<Cliente> clienteOptional = clienteService.findByCpf(cliente.getCpf());
+        if (clienteOptional.isPresent()) {
+            Cliente atualizado = clienteService.update(cliente.getCpf(), cliente);
+            return ResponseEntity.ok(atualizado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @DeleteMapping(value = "/delete/{cpf}")

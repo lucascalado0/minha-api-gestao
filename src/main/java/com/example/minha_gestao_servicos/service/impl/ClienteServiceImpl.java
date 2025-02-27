@@ -4,8 +4,10 @@ import com.example.minha_gestao_servicos.model.Cliente;
 import com.example.minha_gestao_servicos.repository.ClienteRepository;
 import com.example.minha_gestao_servicos.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -21,6 +23,23 @@ public class ClienteServiceImpl implements ClienteService {
             throw new IllegalArgumentException("Ja existe um cliente com esse ID");
         }
         return clienteRepository.save(novoCliente);
+    }
+
+    @Override
+    public Optional<Cliente> findById(Long id) {
+        Optional<Cliente> cliente = clienteRepository.findById(id);
+        if (cliente.isPresent()){
+            return cliente;
+        } else {
+            throw new NoSuchElementException("Cliente com " + id + " não encontrado");
+        }
+    }
+
+    @Override
+    public List<Cliente> findAll() {
+        List<Cliente> clientes = clienteRepository.findAll();
+
+        return ResponseEntity.ok(clientes).getBody();
     }
 
     @Override

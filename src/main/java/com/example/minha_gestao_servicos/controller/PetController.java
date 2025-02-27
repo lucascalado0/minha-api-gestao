@@ -2,7 +2,9 @@ package com.example.minha_gestao_servicos.controller;
 
 
 
+import com.example.minha_gestao_servicos.model.Cliente;
 import com.example.minha_gestao_servicos.model.Pet;
+import com.example.minha_gestao_servicos.service.impl.ClienteServiceImpl;
 import com.example.minha_gestao_servicos.service.impl.PetServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,31 +22,22 @@ public class PetController {
     @Autowired
     private PetServiceImpl petService;
 
+    @Autowired
+    private ClienteServiceImpl clienteService;
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Pet> create(@RequestBody Pet pet){
-
-        pet = petService.create(pet);
-
-        return ResponseEntity.ok().body(pet);
+    public ResponseEntity<Pet> create(@RequestBody Pet pet) {
+        Optional<Cliente> clienteOptional = clienteService.findById(pet.getTutor().getId());
+        if (clienteOptional.isPresent()) {
+            Cliente cliente = clienteOptional.get();
+            pet.setTutor(cliente);
+            cliente.getPets().add(pet);
+            Pet novoPet = petService.create(pet);
+            return ResponseEntity.status(HttpStatus.CREATED).body(novoPet);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
-
-//    @PostMapping(name = "/save")
-//    public ResponseEntity<Pet> adicionarPet(@RequestBody Pet pet) {
-//        Optional<Cliente> clienteOptional = clienteService.findByCpf(pet.getTutor().getCpf());
-//        if (clienteOptional.isPresent()) {
-//            Cliente cliente = clienteOptional.get();
-//            pet.setTutor(cliente);
-//            cliente.getPets().add(pet);
-//            Pet novoPet = petService.create(pet);
-//            return ResponseEntity.status(HttpStatus.CREATED).body(novoPet);
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//    }
-
-
-
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<Pet>> findById(@PathVariable Long id){
